@@ -12,14 +12,14 @@ export default function PricingPage() {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen pt-52 pb-20 bg-background relative overflow-hidden">
+            <main className="min-h-screen pt-56 pb-20 bg-background relative overflow-hidden">
                 {/* Glow Effects */}
                 <div className="absolute top-0 right-[-10%] w-[60%] h-[60%] bg-glow-blue opacity-20 blur-[120px] -z-10"></div>
                 <div className="absolute bottom-0 left-[-10%] w-[60%] h-[60%] bg-glow-purple opacity-20 blur-[120px] -z-10"></div>
 
                 <div className="container-custom">
-                    <div className="text-center max-w-3xl mx-auto mb-20 animate-slide-up">
-                        <h1 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter">Simple <span className="text-gradient-primary">Pro Pricing</span></h1>
+                    <div className="text-center max-w-3xl mx-auto mb-20 animate-slide-up" style={{ marginTop: '8rem' }}>
+                        <h1 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Simple <span className="text-gradient-primary">Pro Pricing</span></h1>
                         <p className="text-gray-400 text-xl leading-relaxed">
                             Start for free, upgrade when you need extreme power. No subscriptions, just results.
                         </p>

@@ -73,7 +73,7 @@ export default function Home() {
 
               <div className="grid lg:grid-cols-2 gap-20 items-center">
                 <div className="relative z-10">
-                  <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Ready to Go <span className="text-gradient-primary">Pro?</span></h2>
+                  <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Ready to Go <span className="text-gradient-primary">Pro?</span></h2>
                   <p className="text-gray-400 text-xl mb-12 leading-relaxed">
                     Unlock batch processing, custom priority encoding, and lifetime updates. Join 10,000+ creators saving TBs of space.
                   </p>

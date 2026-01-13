@@ -1,23 +1,29 @@
+"use client";
+
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Monitor, Apple, Download, ShieldCheck, Heart, Zap, Cpu } from "lucide-react";
 
-export const metadata = {
-    title: "Download MediaCompressor Pro | Windows & macOS",
-    description: "Get the latest version of MediaCompressor Pro. Install FFmpeg-powered offline video compression for your desktop.",
-};
-
 export default function DownloadPage() {
+    // Environment variables for download links
+    const windowsExeUrl = process.env.NEXT_PUBLIC_WINDOWS_EXE_URL || '#';
+    const windowsMsiUrl = process.env.NEXT_PUBLIC_WINDOWS_MSI_URL || '#';
+    const macOsSiliconUrl = process.env.NEXT_PUBLIC_MACOS_SILICON_URL || '#';
+    const macOsIntelUrl = process.env.NEXT_PUBLIC_MACOS_INTEL_URL || '#';
+    const appVersion = process.env.NEXT_PUBLIC_APP_VERSION || '1.2.0';
+    const windowsSize = process.env.NEXT_PUBLIC_WINDOWS_SIZE || '85 MB';
+    const macOsSize = process.env.NEXT_PUBLIC_MACOS_SIZE || '92 MB';
+
     return (
         <>
             <Navbar />
-            <main className="min-h-screen pt-52 bg-background relative overflow-hidden">
+            <main className="min-h-screen pt-56 bg-background relative overflow-hidden">
                 {/* Glow effects */}
                 <div className="absolute top-0 right-[-10%] w-[60%] h-[60%] bg-glow-blue opacity-30 blur-[120px] -z-10"></div>
                 <div className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-glow-purple opacity-30 blur-[120px] -z-10"></div>
 
-                <div className="container-custom text-center mb-24 animate-slide-up">
-                    <h1 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter">Install <span className="text-gradient-primary">MediaCompressor Pro</span></h1>
+                <div className="container-custom text-center mb-24 animate-slide-up" style={{ marginTop: '8rem' }}>
+                    <h1 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Install <span className="text-gradient-primary">MediaCompressor Pro</span></h1>
                     <p className="text-gray-400 max-w-2xl mx-auto text-xl leading-relaxed">
                         The ultimate offline video compression tool. Choose your platform below and experience privacy-first performance.
                     </p>
@@ -32,10 +38,34 @@ export default function DownloadPage() {
                         <h2 className="text-3xl font-bold mb-4 tracking-tight">Windows</h2>
                         <p className="text-gray-400 mb-10 text-lg">Compatible with Windows 10, 11 (64-bit)</p>
                         <div className="w-full space-y-4">
-                            <a href="#" className="btn-premium block w-full !rounded-2xl py-5 text-lg">Download .exe (Installer)</a>
-                            <a href="#" className="btn-outline block w-full !rounded-2xl py-4">Download .msi</a>
+                            <a
+                                href={windowsExeUrl}
+                                download
+                                className="btn-premium block w-full !rounded-2xl py-5 text-lg"
+                                onClick={(e) => {
+                                    if (windowsExeUrl === '#') {
+                                        e.preventDefault();
+                                        alert('Download link not configured. Please check ENVIRONMENT_SETUP.md');
+                                    }
+                                }}
+                            >
+                                Download .exe (Installer)
+                            </a>
+                            <a
+                                href={windowsMsiUrl}
+                                download
+                                className="btn-outline block w-full !rounded-2xl py-4"
+                                onClick={(e) => {
+                                    if (windowsMsiUrl === '#') {
+                                        e.preventDefault();
+                                        alert('Download link not configured. Please check ENVIRONMENT_SETUP.md');
+                                    }
+                                }}
+                            >
+                                Download .msi
+                            </a>
                         </div>
-                        <p className="mt-6 text-sm text-gray-500 font-medium tracking-wide">v1.2.0 • 85 MB • Stable Build</p>
+                        <p className="mt-6 text-sm text-gray-500 font-medium tracking-wide">v{appVersion} • {windowsSize} • Stable Build</p>
                     </div>
 
                     {/* macOS Download */}
@@ -46,10 +76,34 @@ export default function DownloadPage() {
                         <h2 className="text-3xl font-bold mb-4 tracking-tight">macOS</h2>
                         <p className="text-gray-400 mb-10 text-lg">Apple Silicon (M1/M2/M3) & Intel Macs</p>
                         <div className="w-full space-y-4">
-                            <a href="#" className="btn-premium !from-secondary !to-pink-600 block w-full !rounded-2xl py-5 text-lg">Download .dmg (Apple Silicon)</a>
-                            <a href="#" className="btn-outline block w-full !rounded-2xl py-4">Download .dmg (Intel)</a>
+                            <a
+                                href={macOsSiliconUrl}
+                                download
+                                className="btn-premium !from-secondary !to-pink-600 block w-full !rounded-2xl py-5 text-lg"
+                                onClick={(e) => {
+                                    if (macOsSiliconUrl === '#') {
+                                        e.preventDefault();
+                                        alert('Download link not configured. Please check ENVIRONMENT_SETUP.md');
+                                    }
+                                }}
+                            >
+                                Download .dmg (Apple Silicon)
+                            </a>
+                            <a
+                                href={macOsIntelUrl}
+                                download
+                                className="btn-outline block w-full !rounded-2xl py-4"
+                                onClick={(e) => {
+                                    if (macOsIntelUrl === '#') {
+                                        e.preventDefault();
+                                        alert('Download link not configured. Please check ENVIRONMENT_SETUP.md');
+                                    }
+                                }}
+                            >
+                                Download .dmg (Intel)
+                            </a>
                         </div>
-                        <p className="mt-6 text-sm text-gray-500 font-medium tracking-wide">v1.2.0 • 92 MB • Native M-Series Support</p>
+                        <p className="mt-6 text-sm text-gray-500 font-medium tracking-wide">v{appVersion} • {macOsSize} • Native M-Series Support</p>
                     </div>
                 </div>
 
@@ -114,4 +168,5 @@ export default function DownloadPage() {
         </>
     );
 }
+
 

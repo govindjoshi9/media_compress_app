@@ -115,12 +115,12 @@ export default function Hero() {
                     </div>
 
                     {/* Floating Decorative Elements */}
-                    <div className="absolute -top-8 -right-8 glass-card px-6 py-4 rounded-2xl border-white/10 shadow-xl animate-float z-20" style={{ animationDelay: '1s' }}>
+                    <div className="absolute -top-6 -right-6 glass-card px-6 py-4 rounded-2xl border-white/10 shadow-xl animate-float z-20" style={{ animationDelay: '1s' }}>
                         <div className="text-primary-bright font-black text-2xl">-92%</div>
                         <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Storage Saved</div>
                     </div>
 
-                    <div className="absolute -bottom-8 -left-8 glass-card px-6 py-4 rounded-2xl border-white/10 shadow-xl animate-slide-up z-20" style={{ animationDelay: '1.5s' }}>
+                    <div className="absolute -bottom-6 -left-6 glass-card px-6 py-4 rounded-2xl border-white/10 shadow-xl animate-slide-up z-20" style={{ animationDelay: '1.5s' }}>
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent">
                                 <ShieldCheck size={24} />
