@@ -1,90 +1,222 @@
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+"use client";
+
+import React from 'react';
 import Link from 'next/link';
+import { createPageUrl, PageName } from '@/lib/navigation';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Clock, User, Tag } from 'lucide-react';
+import Navbar from '@/components/landing/Navbar';
+import Footer from '@/components/landing/Footer';
 
-export const metadata = {
-    title: "Blog | Media Compression Guides & Tips",
-    description: "Learn how to compress videos without losing quality, understand CRF settings, and optimize for social media.",
-};
-
-const posts = [
-    {
-        title: "How to Compress 5GB Videos Without Losing Quality",
-        slug: "compress-5gb-videos",
-        excerpt: "Struggling with massive video files? Learn the exact settings to use in MediaCompressor Pro to shrink your files by 90% while keeping them crisp.",
-        date: "Jan 12, 2026",
-        category: "Tutorial"
-    },
-    {
-        title: "Best CRF Settings Explained: Balance Quality & Size",
-        slug: "crf-settings-explained",
-        excerpt: "What is CRF? Is lower better? We break down the technical side of FFmpeg compression so you can get the best results every time.",
-        date: "Jan 10, 2026",
-        category: "Technical"
-    },
-    {
-        title: "Compressing Videos for WhatsApp: The Ultimate Guide",
-        slug: "whatsapp-video-compression",
-        excerpt: "WhatsApp has strict limits. Here is how to compress your videos to fit under the 16MB/64MB limit without looking like a potato.",
-        date: "Jan 05, 2026",
-        category: "Social Media"
-    }
+const blogPosts = [
+  {
+    slug: 'how-to-compress-5gb-videos',
+    title: 'How to Compress 5GB Videos Without Losing Quality',
+    excerpt: 'Learn the secrets to shrinking massive video files while maintaining stunning visual quality. A complete guide for beginners and pros.',
+    image: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&h=400&fit=crop',
+    author: 'MediaCompressor Team',
+    date: 'Jan 15, 2025',
+    readTime: '5 min read',
+    category: 'Tutorial',
+  },
+  {
+    slug: 'best-crf-settings-explained',
+    title: 'Best CRF Settings Explained: A Complete Guide',
+    excerpt: 'CRF (Constant Rate Factor) is the key to balancing file size and quality. Discover the optimal settings for different use cases.',
+    image: 'https://images.unsplash.com/photo-1535016120720-40c646be5580?w=800&h=400&fit=crop',
+    author: 'MediaCompressor Team',
+    date: 'Jan 10, 2025',
+    readTime: '7 min read',
+    category: 'Technical',
+  },
+  {
+    slug: 'compress-videos-for-whatsapp',
+    title: 'How to Compress Videos for WhatsApp: Ultimate Guide',
+    excerpt: 'WhatsApp has strict file size limits. Learn how to compress your videos perfectly for sharing without quality loss.',
+    image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&h=400&fit=crop',
+    author: 'MediaCompressor Team',
+    date: 'Jan 5, 2025',
+    readTime: '4 min read',
+    category: 'Tips',
+  },
+  {
+    slug: 'ffmpeg-vs-online-compressors',
+    title: 'FFmpeg vs Online Compressors: Which is Better?',
+    excerpt: 'Compare the pros and cons of desktop FFmpeg-based tools versus cloud-based online video compressors.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
+    author: 'MediaCompressor Team',
+    date: 'Dec 28, 2024',
+    readTime: '6 min read',
+    category: 'Comparison',
+  },
+  {
+    slug: 'video-compression-for-youtube',
+    title: 'Best Video Settings for YouTube Uploads in 2025',
+    excerpt: 'Optimize your videos for YouTube with the perfect compression settings. Get better quality and faster uploads.',
+    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=400&fit=crop',
+    author: 'MediaCompressor Team',
+    date: 'Dec 20, 2024',
+    readTime: '8 min read',
+    category: 'Tutorial',
+  },
+  {
+    slug: 'batch-video-compression-tips',
+    title: 'Batch Video Compression: Save Hours of Work',
+    excerpt: 'Process multiple videos at once with these pro tips. Perfect for content creators handling large video libraries.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
+    author: 'MediaCompressor Team',
+    date: 'Dec 15, 2024',
+    readTime: '5 min read',
+    category: 'Productivity',
+  },
 ];
 
-export default function BlogPage() {
-    return (
-        <>
-            <Navbar />
-            <main className="min-h-screen pt-32 bg-background">
-                <div className="container mx-auto px-6 mb-16">
-                    <h1 className="text-4xl md:text-6xl font-black mb-6">Expert <span className="text-gradient-primary">Insights</span></h1>
-                    <p className="text-gray-400 max-w-2xl text-lg">
-                        Master the art of media compression with our expert guides and tutorials.
+const categoryColors = {
+  Tutorial: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  Technical: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  Tips: 'bg-green-500/20 text-green-400 border-green-500/30',
+  Comparison: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  Productivity: 'bg-pink-500/20 text-pink-400 border-pink-500/30',
+};
+
+export default function Blog() {
+  return (
+    <div className="min-h-screen bg-[#0F0D1A]">
+      <Navbar />
+
+      {/* Hero */}
+      <section className="pt-32 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
+          >
+            Video Compression
+            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"> Blog</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-gray-400 max-w-2xl mx-auto"
+          >
+            Tips, tutorials, and insights on video compression, FFmpeg, and optimizing your workflow.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Featured Post */}
+      <section className="pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link href={createPageUrl('BlogPost') + `?slug=${blogPosts[0].slug}`}>
+              <div className="relative group rounded-3xl overflow-hidden bg-white/[0.03] border border-white/10 hover:border-indigo-500/30 transition-all">
+                <div className="grid lg:grid-cols-2 gap-8">
+                  <div className="aspect-video lg:aspect-auto overflow-hidden">
+                    <img
+                      src={blogPosts[0].image}
+                      alt={blogPosts[0].title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-8 flex flex-col justify-center">
+                    <span className={`inline-flex w-fit items-center px-3 py-1 rounded-full text-xs font-medium border ${categoryColors[blogPosts[0].category as keyof typeof categoryColors]} mb-4`}>
+                      <Tag className="w-3 h-3 mr-1.5" />
+                      {blogPosts[0].category}
+                    </span>
+                    <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-indigo-400 transition-colors">
+                      {blogPosts[0].title}
+                    </h2>
+                    <p className="text-gray-400 mb-6 line-clamp-2">
+                      {blogPosts[0].excerpt}
                     </p>
-                </div>
-
-                <div className="container mx-auto px-6 grid md:grid-cols-3 gap-8 mb-24">
-                    {posts.map((post, i) => (
-                        <div key={i} className="glass-card flex flex-col rounded-3xl overflow-hidden group">
-                            <div className="aspect-video bg-white/5 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent group-hover:opacity-100 opacity-50 transition-opacity"></div>
-                                <div className="absolute inset-0 flex items-center justify-center p-8">
-                                    <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                                        <div className="w-1/2 h-full bg-primary animate-pulse"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="p-8 flex-1 flex flex-col">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <span className="text-[10px] uppercase font-bold tracking-widest text-primary px-2 py-1 rounded bg-primary/10">{post.category}</span>
-                                    <span className="text-xs text-gray-500">{post.date}</span>
-                                </div>
-                                <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors line-clamp-2">
-                                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                                </h3>
-                                <p className="text-sm text-gray-400 mb-6 line-clamp-3">{post.excerpt}</p>
-                                <Link href={`/blog/${post.slug}`} className="text-sm font-bold flex items-center gap-2 text-white group/link self-start mt-auto">
-                                    Read More
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className=" group-hover/link:translate-x-1 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <section className="bg-primary/5 py-20 border-y border-white/5">
-                    <div className="container mx-auto px-6 text-center">
-                        <h2 className="text-3xl font-bold mb-6">Stay Updated</h2>
-                        <p className="text-gray-400 mb-8 max-w-xl mx-auto">Get notified about new features, major updates, and compression tips.</p>
-                        <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                            <input type="email" placeholder="Enter your email" className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary transition-colors" />
-                            <button className="btn-premium whitespace-nowrap">Subscribe</button>
-                        </form>
+                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-1.5">
+                        <User className="w-4 h-4" />
+                        <span>{blogPosts[0].author}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4" />
+                        <span>{blogPosts[0].readTime}</span>
+                      </div>
                     </div>
-                </section>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
 
-                <Footer />
-            </main>
-        </>
-    );
+      {/* All Posts Grid */}
+      <section className="pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white mb-8">All Articles</h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogPosts.slice(1).map((post, index) => (
+              <motion.div
+                key={post.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index }}
+              >
+                <Link href={createPageUrl('BlogPost') + `?slug=${post.slug}`}>
+                  <article className="group h-full bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden hover:border-indigo-500/30 transition-all">
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${categoryColors[post.category as keyof typeof categoryColors]} mb-3`}>
+                        {post.category}
+                      </span>
+                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-gray-400 mb-4 line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <span>{post.date}</span>
+                        <span>{post.readTime}</span>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="pb-24">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-8">
+            <h3 className="text-xl font-semibold text-white mb-4">Ready to start compressing?</h3>
+            <p className="text-gray-400 mb-6">Download MediaCompressor Pro and put these tips into action.</p>
+            <Link href={createPageUrl('Download')}>
+              <Button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white rounded-full px-8">
+                Download Free
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
 }

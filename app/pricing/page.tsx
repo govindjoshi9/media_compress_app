@@ -1,111 +1,230 @@
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { Check, Crown, Zap, Rocket, ShieldCheck, Heart } from "lucide-react";
+"use client";
+
+import React from 'react';
 import Link from 'next/link';
+import { createPageUrl, PageName } from '@/lib/navigation';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Check, Sparkles, Gift, Crown, ArrowRight, Zap } from 'lucide-react';
+import Navbar from '@/components/landing/Navbar';
+import Footer from '@/components/landing/Footer';
 
-export const metadata = {
-    title: "Pricing | MediaCompressor Pro",
-    description: "Upgrade to MediaCompressor Pro for unlimited offline video compression and batch processing power.",
-};
+const plans = [
+  {
+    name: 'Free',
+    description: 'Perfect for occasional use',
+    price: '₹0',
+    period: 'forever',
+    icon: Gift,
+    color: 'from-gray-500 to-gray-600',
+    features: [
+      '3 video compressions per day',
+      'All compression presets',
+      'No file size limit',
+      '100% offline processing',
+      'All output formats',
+      'Drag & drop interface',
+    ],
+    cta: 'Download Free',
+    ctaLink: 'Download',
+    popular: false,
+  },
+  {
+    name: 'Monthly Pro',
+    description: 'For power users',
+    price: '₹50',
+    period: '/ month',
+    icon: Sparkles,
+    color: 'from-indigo-500 to-purple-600',
+    features: [
+      'Unlimited compressions',
+      'Priority processing speed',
+      'Batch processing',
+      'All formats supported',
+      'Email support',
+      'Early access to features',
+    ],
+    cta: 'Get Started',
+    ctaLink: 'Download',
+    popular: true,
+  },
+  {
+    name: 'Yearly Pro',
+    description: 'Best value',
+    price: '₹500',
+    period: '/ year',
+    savings: 'Save ₹100 (17%)',
+    icon: Crown,
+    color: 'from-amber-500 to-orange-500',
+    features: [
+      'Everything in Monthly',
+      '2 months free',
+      'Priority support',
+      'Exclusive updates',
+      'Beta feature access',
+      'License for 2 devices',
+    ],
+    cta: 'Get Yearly',
+    ctaLink: 'Download',
+    popular: false,
+  },
+];
 
-export default function PricingPage() {
-    return (
-        <>
-            <Navbar />
-            <main className="min-h-screen pt-56 pb-20 bg-background relative overflow-hidden">
-                {/* Glow Effects */}
-                <div className="absolute top-0 right-[-10%] w-[60%] h-[60%] bg-glow-blue opacity-20 blur-[120px] -z-10"></div>
-                <div className="absolute bottom-0 left-[-10%] w-[60%] h-[60%] bg-glow-purple opacity-20 blur-[120px] -z-10"></div>
+const comparisonFeatures = [
+  { feature: 'Daily Compressions', free: '3 / day', pro: 'Unlimited' },
+  { feature: 'File Size Limit', free: 'No limit', pro: 'No limit' },
+  { feature: 'Compression Presets', free: 'All 3 presets', pro: 'All 3 presets' },
+  { feature: 'Batch Processing', free: '✓', pro: '✓' },
+  { feature: 'Processing Speed', free: 'Standard', pro: 'Priority' },
+  { feature: 'Support', free: 'Community', pro: 'Email' },
+  { feature: 'Early Access', free: '—', pro: '✓' },
+];
 
-                <div className="container-custom">
-                    <div className="text-center max-w-3xl mx-auto mb-20 animate-slide-up" style={{ marginTop: '8rem' }}>
-                        <h1 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Simple <span className="text-gradient-primary">Pro Pricing</span></h1>
-                        <p className="text-gray-400 text-xl leading-relaxed">
-                            Start for free, upgrade when you need extreme power. No subscriptions, just results.
-                        </p>
+export default function Pricing() {
+  return (
+    <div className="min-h-screen bg-[#0F0D1A]">
+      <Navbar />
+
+      {/* Hero */}
+      <section className="pt-32 pb-16 lg:pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-6"
+          >
+            <Zap className="w-4 h-4 text-indigo-400" />
+            <span className="text-sm text-indigo-300">Simple, Transparent Pricing</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
+          >
+            Choose Your
+            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"> Plan</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-gray-400 max-w-2xl mx-auto"
+          >
+            Start free with 3 daily compressions. Upgrade anytime for unlimited access.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Pricing Cards */}
+      <section className="pb-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            {plans.map((plan, index) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index }}
+                className={`relative ${plan.popular ? 'md:-mt-4 md:mb-4' : ''}`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium shadow-lg shadow-indigo-500/25">
+                      <Sparkles className="w-4 h-4" />
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+
+                <div className={`h-full rounded-3xl p-8 ${plan.popular
+                    ? 'bg-gradient-to-b from-indigo-500/20 to-purple-500/10 border-2 border-indigo-500/40'
+                    : 'bg-white/[0.03] border border-white/10'
+                  }`}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${plan.color} flex items-center justify-center`}>
+                      <plan.icon className="w-6 h-6 text-white" />
                     </div>
-
-                    <div className="grid md:grid-cols-3 gap-8 items-stretch mb-32">
-                        {/* Starter */}
-                        <div className="glass-card p-10 rounded-[3rem] flex flex-col border-white/5 hover:border-white/10">
-                            <div className="mb-8">
-                                <h3 className="text-xl font-bold text-gray-400 mb-2 uppercase tracking-widest">Starter</h3>
-                                <div className="text-5xl font-black">$0</div>
-                            </div>
-                            <ul className="space-y-4 mb-10 flex-1">
-                                <li className="flex items-center gap-3 text-gray-400"><Check size={18} className="text-primary-bright" /> 3 compressions / day</li>
-                                <li className="flex items-center gap-3 text-gray-400"><Check size={18} className="text-primary-bright" /> 1080p Resolution limit</li>
-                                <li className="flex items-center gap-3 text-gray-400"><Check size={18} className="text-primary-bright" /> No Batch Processing</li>
-                            </ul>
-                            <button className="w-full py-4 rounded-2xl border border-white/5 text-gray-500 font-bold cursor-default">Current Plan</button>
-                        </div>
-
-                        {/* Pro Monthly */}
-                        <div className="glass-card p-10 rounded-[3rem] flex flex-col border-primary/30 bg-primary/5 ring-1 ring-primary/20 relative lg:scale-110 z-10 shadow-glow">
-                            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary px-4 py-1.5 rounded-full text-xs font-black text-white shadow-lg tracking-widest animate-pulse">MOST POPULAR</div>
-                            <div className="mb-8">
-                                <div className="flex justify-between items-start">
-                                    <h3 className="text-xl font-bold text-primary-bright mb-2 uppercase tracking-widest">Pro Monthly</h3>
-                                    <Zap size={24} className="text-primary-bright" />
-                                </div>
-                                <div className="text-5xl font-black">$9<span className="text-xl text-primary/40">/mo</span></div>
-                            </div>
-                            <ul className="space-y-4 mb-10 flex-1">
-                                <li className="flex items-center gap-3 text-foreground font-bold"><Check size={18} className="text-accent" /> Unlimited Batch Mode</li>
-                                <li className="flex items-center gap-3 text-foreground font-bold"><Check size={18} className="text-accent" /> 8K & RAW support</li>
-                                <li className="flex items-center gap-3 text-foreground font-bold"><Check size={18} className="text-accent" /> Priority GPU acceleration</li>
-                                <li className="flex items-center gap-3 text-foreground font-bold"><Check size={18} className="text-accent" /> No Watermarks</li>
-                            </ul>
-                            <Link href="#" className="btn-premium w-full !rounded-2xl py-5 text-lg">Go Pro Now</Link>
-                        </div>
-
-                        {/* Pro Yearly */}
-                        <div className="glass-card p-10 rounded-[3rem] flex flex-col border-white/5 hover:border-white/10">
-                            <div className="mb-8">
-                                <div className="flex justify-between items-start">
-                                    <h3 className="text-xl font-bold text-gray-400 mb-2 uppercase tracking-widest">Pro Yearly</h3>
-                                    <Rocket size={24} className="text-secondary-bright" />
-                                </div>
-                                <div className="text-5xl font-black">$29<span className="text-xl text-gray-500">/yr</span></div>
-                            </div>
-                            <ul className="space-y-4 mb-10 flex-1">
-                                <li className="flex items-center gap-3 text-gray-300 font-medium"><Check size={18} className="text-secondary-bright" /> Everything in Pro</li>
-                                <li className="flex items-center gap-3 text-gray-300 font-medium"><Check size={18} className="text-secondary-bright" /> 75% Savings vs Monthly</li>
-                                <li className="flex items-center gap-3 text-gray-300 font-medium"><Check size={18} className="text-secondary-bright" /> Premium Support</li>
-                                <li className="flex items-center gap-3 text-gray-300 font-medium"><Check size={18} className="text-secondary-bright" /> Beta Access</li>
-                            </ul>
-                            <Link href="#" className="btn-outline w-full !rounded-2xl py-5 text-lg border-secondary/20 hover:border-secondary/50">Save with Yearly</Link>
-                        </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
+                      <p className="text-sm text-gray-500">{plan.description}</p>
                     </div>
+                  </div>
 
-                    {/* FAQ Section */}
-                    <div className="max-w-4xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl font-black mb-4">Got Questions?</h2>
-                            <p className="text-gray-500 font-medium">Clear answers for clear decisions.</p>
-                        </div>
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {[
-                                { q: "Can I cancel anytime?", a: "There's no subscription for the yearly license. You pay once and use it for the year. Simple.", icon: <Heart className="text-red-400" size={20} /> },
-                                { q: "Is the license per machine?", a: "Each pro license can be activated on up to 3 personal devices (Windows/Mac).", icon: <ShieldCheck className="text-accent" size={20} /> },
-                                { q: "Do you offer refunds?", a: "If the product doesn't meet your hardware needs, contact us within 7 days for a full refund.", icon: <Zap className="text-primary-bright" size={20} /> },
-                                { q: "Will I get updates?", a: "Yes, all 1.x version updates are included free for all Pro license holders.", icon: <Crown className="text-secondary-bright" size={20} /> }
-                            ].map((faq, i) => (
-                                <div key={i} className="glass-card p-8 rounded-3xl border-white/5 flex gap-6">
-                                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center shrink-0">
-                                        {faq.icon}
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-bold mb-2">{faq.q}</h4>
-                                        <p className="text-sm text-gray-400 leading-relaxed font-medium">{faq.a}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-white">{plan.price}</span>
+                    <span className="text-gray-400 ml-1">{plan.period}</span>
+                    {plan.savings && (
+                      <p className="text-sm text-green-400 mt-1">{plan.savings}</p>
+                    )}
+                  </div>
+
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-3 text-gray-300">
+                        <Check className={`w-5 h-5 flex-shrink-0 ${plan.popular ? 'text-indigo-400' : 'text-green-400'}`} />
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link href={createPageUrl(plan.ctaLink as PageName)}>
+                    <Button className={`w-full py-6 rounded-xl ${plan.popular
+                        ? 'bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white'
+                        : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
+                      }`}>
+                      {plan.cta}
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </Link>
                 </div>
-            </main>
-            <Footer />
-        </>
-    );
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison Table */}
+      <section className="pb-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white text-center mb-8">Feature Comparison</h2>
+
+          <div className="bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-3 bg-white/5 p-4 border-b border-white/5">
+              <div className="text-gray-400 font-medium">Feature</div>
+              <div className="text-center text-gray-400 font-medium">Free</div>
+              <div className="text-center text-indigo-400 font-medium">Pro</div>
+            </div>
+
+            {comparisonFeatures.map((row, index) => (
+              <div
+                key={row.feature}
+                className={`grid grid-cols-3 p-4 ${index < comparisonFeatures.length - 1 ? 'border-b border-white/5' : ''}`}
+              >
+                <div className="text-gray-300">{row.feature}</div>
+                <div className="text-center text-gray-400">{row.free}</div>
+                <div className="text-center text-white">{row.pro}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Link */}
+      <section className="pb-24">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-gray-400 mb-4">Have questions about pricing?</p>
+          <Link href={createPageUrl('Home') + '#faq'}>
+            <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
+              View FAQ
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
 }
