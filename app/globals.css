@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-@import "tailwindcss";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   /* Color Palette - Premium Midnight Theme */
@@ -58,39 +60,41 @@ html {
 /* Redefined Glass Card */
 .glass-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-premium);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s ease;
 }
 
 .glass-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--glass-highlight) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--glass-highlight) 0%, transparent 100%);
   pointer-events: none;
+  opacity: 0.5;
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium);
+  background: rgba(20, 20, 35, 0.6);
 }
 
 /* Premium Gradients */
 .text-gradient {
-  background: linear-gradient(135deg, #fff 30%, #94a3b8 100%);
+  background: linear-gradient(to right, #ffffff, #94a3b8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-primary {
-  background: linear-gradient(135deg, #818cf8 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #818CF8 0%, #C084FC 100%); /* Indigo to Purple */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

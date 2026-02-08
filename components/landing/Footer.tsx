@@ -24,28 +24,28 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0A0910] border-t border-white/5">
+    <footer className="bg-background border-t border-white/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                <Zap className="w-4 h-4 text-indigo-400" />
               </div>
-              <span className="font-bold text-white">MediaCompressor</span>
+              <span className="font-bold text-white tracking-tight">MediaCompressor</span>
             </div>
-            <p className="text-sm text-gray-500 mb-6 max-w-xs">
+            <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
               Compress large videos offline without losing quality. Fast, private, and secure.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-gray-500 hover:text-indigo-400 transition-colors">
+              <a href="#" className="text-gray-500 hover:text-white transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-500 hover:text-indigo-400 transition-colors">
+              <a href="#" className="text-gray-500 hover:text-white transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
-              <a href="mailto:support@mediacompressor.pro" className="text-gray-500 hover:text-indigo-400 transition-colors">
+              <a href="mailto:support@mediacompressor.pro" className="text-gray-500 hover:text-white transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -54,7 +54,7 @@ export default function Footer() {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-sm font-semibold text-white mb-4">{category}</h3>
+              <h3 className="text-sm font-semibold text-white mb-4 tracking-wide">{category}</h3>
               <ul className="space-y-3">
                 {links.map((link: any) => (
                   <li key={link.name}>

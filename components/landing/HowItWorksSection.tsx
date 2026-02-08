@@ -10,35 +10,35 @@ const steps = [
     number: '01',
     title: 'Select Your Video',
     description: 'Drag and drop or browse to select any video file. We support MP4, MKV, AVI, MOV, and more.',
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-indigo-500 to-blue-500',
   },
   {
     icon: Settings,
     number: '02',
     title: 'Choose Compression',
     description: 'Pick your preset: High Quality, Balanced, or Maximum Compression. Customize CRF if you\'re a pro.',
-    color: 'from-indigo-500 to-purple-500',
+    color: 'from-purple-500 to-indigo-500',
   },
   {
     icon: Download,
     number: '03',
     title: 'Get Smaller File',
     description: 'Watch the magic happen. Your compressed video is ready in minutes, saved right to your device.',
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-pink-500 to-rose-500',
   },
 ];
 
 export default function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="relative py-24 lg:py-32 bg-[#0A0910]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="relative py-24 lg:py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 lg:mb-24">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-4"
+            className="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-4"
           >
             Simple Process
           </motion.span>
@@ -51,7 +51,7 @@ export default function HowItWorksSection() {
           >
             Three Steps to
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
               Smaller Videos
             </span>
           </motion.h2>
@@ -80,19 +80,19 @@ export default function HowItWorksSection() {
             >
               {/* Connector Line */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 left-full w-full h-px bg-gradient-to-r from-indigo-500/50 to-transparent z-0" />
+                <div className="hidden lg:block absolute top-16 left-full w-full h-px bg-gradient-to-r from-indigo-500/20 to-transparent z-0" />
               )}
 
-              <div className="relative bg-gradient-to-b from-white/[0.05] to-transparent border border-white/5 rounded-3xl p-8 text-center">
+              <div className="relative glass-card p-8 text-center group hover:border-indigo-500/30 transition-all duration-300">
                 {/* Step Number */}
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className={`inline-block px-4 py-1 rounded-full bg-gradient-to-r ${step.color} text-white text-sm font-bold`}>
+                  <span className={`inline-block px-4 py-1 rounded-full bg-gradient-to-r ${step.color} text-white text-sm font-bold shadow-lg`}>
                     {step.number}
                   </span>
                 </div>
 
                 {/* Icon */}
-                <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl`}>
+                <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   <step.icon className="w-10 h-10 text-white" />
                 </div>
 
@@ -110,28 +110,30 @@ export default function HowItWorksSection() {
           viewport={{ once: true }}
           className="mt-16 lg:mt-24"
         >
-          <div className="max-w-2xl mx-auto bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-2xl p-8">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <CheckCircle className="w-8 h-8 text-green-400" />
-              <h3 className="text-xl font-semibold text-white">Typical Results</h3>
+          <div className="max-w-2xl mx-auto glass-card border border-indigo-500/20 p-8 relative overflow-hidden">
+             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 pointer-events-none" />
+            <div className="relative z-10">
+                <div className="flex items-center justify-center gap-4 mb-6">
+                <CheckCircle className="w-8 h-8 text-emerald-400" />
+                <h3 className="text-xl font-semibold text-white">Typical Results</h3>
+                </div>
+                <div className="grid grid-cols-3 gap-6 text-center items-center">
+                <div>
+                    <p className="text-3xl font-bold text-gray-400 mb-1">5.2 GB</p>
+                    <p className="text-sm text-gray-500">Before</p>
+                </div>
+                <div>
+                    <div className="w-12 h-1 bg-gradient-to-r from-gray-700 to-indigo-500 rounded-full mx-auto" />
+                </div>
+                <div>
+                    <p className="text-4xl font-bold text-indigo-400 mb-1">1.2 GB</p>
+                    <p className="text-sm text-gray-500">After</p>
+                </div>
+                </div>
+                <p className="text-center text-gray-400 mt-6">
+                <span className="text-emerald-400 font-semibold">77% smaller</span> with minimal quality loss
+                </p>
             </div>
-            <div className="grid grid-cols-3 gap-6 text-center">
-              <div>
-                <p className="text-3xl font-bold text-red-400 mb-1">5.2 GB</p>
-                <p className="text-sm text-gray-500">Before</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-indigo-400 mb-1">→</p>
-                <p className="text-sm text-gray-500">Compress</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-green-400 mb-1">1.2 GB</p>
-                <p className="text-sm text-gray-500">After</p>
-              </div>
-            </div>
-            <p className="text-center text-gray-400 mt-4">
-              <span className="text-green-400 font-semibold">77% smaller</span> with minimal quality loss
-            </p>
           </div>
         </motion.div>
       </div>
