@@ -46,15 +46,21 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="relative py-24 lg:py-32 bg-[#0A0910]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-4"
+            className="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-4"
           >
             FAQ
           </motion.span>
@@ -67,7 +73,7 @@ export default function FAQSection() {
           >
             Frequently Asked
             <br />
-            <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
               Questions
             </span>
           </motion.h2>
@@ -85,12 +91,12 @@ export default function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-white/[0.03] border border-white/5 rounded-xl px-6 overflow-hidden"
+                className="glass-card px-6 lg:px-8 border border-white/5 data-[state=open]:border-indigo-500/30 transition-all duration-300"
               >
-                <AccordionTrigger className="text-left text-white hover:text-indigo-400 py-5">
+                <AccordionTrigger className="text-left text-lg font-medium text-white hover:text-indigo-400 py-6 transition-colors [&[data-state=open]]:text-indigo-400">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-400 pb-5 leading-relaxed">
+                <AccordionContent className="text-gray-400 pb-6 leading-relaxed text-base">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -65,19 +65,25 @@ export default function DownloadPage() {
   const [selectedPlatform, setSelectedPlatform] = React.useState('Windows');
 
   return (
-    <div className="min-h-screen bg-[#0F0D1A]">
+    <div className="min-h-screen bg-[#0B0A14]">
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        {/* Background Glow */}
+        <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px]" />
+            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6"
           >
-            <Shield className="w-4 h-4 text-green-400" />
-            <span className="text-sm text-green-300">100% Safe & Secure</span>
+            <Shield className="w-4 h-4 text-emerald-400" />
+            <span className="text-sm text-emerald-300 font-medium">100% Safe & Secure</span>
           </motion.div>
 
           <motion.h1
@@ -87,7 +93,7 @@ export default function DownloadPage() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
             Download
-            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"> MediaCompressor</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400"> MediaCompressor</span>
           </motion.h1>
 
           <motion.p
@@ -112,13 +118,13 @@ export default function DownloadPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => setSelectedPlatform(platform.name)}
-                className={`relative cursor-pointer rounded-3xl p-8 transition-all ${selectedPlatform === platform.name
-                  ? 'bg-gradient-to-b from-indigo-500/20 to-purple-500/10 border-2 border-indigo-500/40'
-                  : 'bg-white/[0.03] border border-white/10 hover:border-white/20'
+                className={`relative cursor-pointer rounded-3xl p-8 transition-all duration-300 ${selectedPlatform === platform.name
+                  ? 'glass-card border-indigo-500/50 shadow-2xl shadow-indigo-500/10 scale-[1.02]'
+                  : 'glass-card hover:border-indigo-500/30 hover:scale-[1.01]'
                   }`}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${platform.color} flex items-center justify-center`}>
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${platform.color} flex items-center justify-center shadow-lg`}>
                     <platform.icon className="w-8 h-8 text-white" />
                   </div>
                   <div>
@@ -128,10 +134,10 @@ export default function DownloadPage() {
                 </div>
 
                 <a href={platform.downloadUrl} target="_blank" rel="noopener noreferrer">
-                  <Button className={`w-full py-6 rounded-xl mb-6 ${selectedPlatform === platform.name
-                    ? 'bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700'
-                    : 'bg-white/5 hover:bg-white/10'
-                    } text-white`}>
+                  <Button className={`w-full py-6 rounded-xl mb-6 font-semibold transition-all ${selectedPlatform === platform.name
+                    ? 'bg-white text-black hover:bg-gray-100 shadow-lg shadow-white/10'
+                    : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
+                    }`}>
                     <Download className="w-5 h-5 mr-2" />
                     Download for {platform.name}
                   </Button>
@@ -151,15 +157,15 @@ export default function DownloadPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Requirements */}
-            <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <div className="glass-card p-8">
+              <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-3">
                 <Cpu className="w-5 h-5 text-indigo-400" />
                 System Requirements ({selectedPlatform})
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {platforms.find(p => p.name === selectedPlatform)?.requirements.map((req) => (
                   <li key={req} className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                     <span className="text-sm">{req}</span>
                   </li>
                 ))}
@@ -167,15 +173,15 @@ export default function DownloadPage() {
             </div>
 
             {/* Installation Steps */}
-            <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <div className="glass-card p-8">
+              <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-3">
                 <HardDrive className="w-5 h-5 text-purple-400" />
                 Installation Guide
               </h3>
-              <ol className="space-y-3">
+              <ol className="space-y-4">
                 {installSteps[selectedPlatform as keyof typeof installSteps]?.map((step, index) => (
                   <li key={step} className="flex items-start gap-3 text-gray-300">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-sm font-medium flex items-center justify-center">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-400 text-xs font-bold flex items-center justify-center border border-indigo-500/30">
                       {index + 1}
                     </span>
                     <span className="text-sm">{step}</span>
@@ -190,34 +196,37 @@ export default function DownloadPage() {
       {/* Features Reminder */}
       <section className="pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-8 text-center">
-            <h3 className="text-xl font-semibold text-white mb-4">What You Get</h3>
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-yellow-400" />
-                <span>FFmpeg-powered</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-green-400" />
-                <span>100% Offline</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <HardDrive className="w-4 h-4 text-blue-400" />
-                <span>No Size Limits</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Download className="w-4 h-4 text-purple-400" />
-                <span>3 Free Daily</span>
-              </div>
-            </div>
+          <div className="glass-card p-8 text-center relative overflow-hidden">
+             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 pointer-events-none" />
+            <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-white mb-6">What You Get</h3>
+                <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-gray-400">
+                <div className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-yellow-400" />
+                    <span>FFmpeg-powered</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Shield className="w-4 h-4 text-emerald-400" />
+                    <span>100% Offline</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <HardDrive className="w-4 h-4 text-blue-400" />
+                    <span>No Size Limits</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Download className="w-4 h-4 text-purple-400" />
+                    <span>3 Free Daily</span>
+                </div>
+                </div>
 
-            <div className="mt-6">
-              <Link href={createPageUrl('Pricing')}>
-                <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
-                  View Pricing Plans
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
+                <div className="mt-8">
+                <Link href={createPageUrl('Pricing')}>
+                    <Button variant="outline" className="border-white/10 text-white hover:bg-white/5 px-6 rounded-full">
+                    View Pricing Plans
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                </Link>
+                </div>
             </div>
           </div>
         </div>

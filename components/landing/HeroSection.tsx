@@ -9,12 +9,11 @@ import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0F0D1A] pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-16">
       {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC40Ij48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIvPjwvZz48L2c+PC9zdmc+')] opacity-30" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-indigo-500/10 blur-[120px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-purple-500/10 blur-[120px] rounded-full mix-blend-screen" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
@@ -24,13 +23,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
             </span>
-            <span className="text-sm text-indigo-300">3 Free Compressions Daily</span>
+            <span className="text-sm text-gray-300 font-medium">3 Free Compressions Daily</span>
           </motion.div>
 
           {/* Headline */}
@@ -38,12 +37,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
           >
             Compress Large Videos
             <br />
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Offline Without Losing Quality
+            <span className="text-gradient-primary">
+              Offline & Securely
             </span>
           </motion.h1>
 
@@ -52,10 +51,10 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10"
+            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Shrink 5-6GB videos in minutes. No cloud uploads. No internet needed.
-            Your files stay on your device—100% private and secure.
+            Shrink 5-6GB videos in minutes without losing quality. 
+            No cloud uploads, no internet needed—100% private.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -63,18 +62,17 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
             <Link href={createPageUrl('Download')}>
-              <Button className="w-full sm:w-auto bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-full shadow-2xl shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all group">
+              <Button className="bg-white text-black hover:bg-gray-100 px-8 py-6 text-lg rounded-full font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-white/10">
                 <Download className="w-5 h-5 mr-2" />
                 Download for Free
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Button
-              variant="outline"
-              className="w-full sm:w-auto border-white/10 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-full"
+              variant="ghost"
+              className="text-gray-300 hover:text-white hover:bg-white/5 px-8 py-6 text-lg rounded-full transition-all"
               onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Play className="w-5 h-5 mr-2" />
@@ -87,15 +85,15 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500"
+            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-gray-500 font-medium"
           >
             <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-green-400" />
-              <span>100% Offline</span>
+              <Shield className="w-4 h-4 text-indigo-400" />
+              <span>100% Offline Privacy</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-yellow-400" />
-              <span>Powered by FFmpeg</span>
+              <Zap className="w-4 h-4 text-indigo-400" />
+              <span>FFmpeg Powered</span>
             </div>
             <div className="flex items-center gap-2">
               <Download className="w-4 h-4 text-indigo-400" />
@@ -109,7 +107,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-16 lg:mt-24 relative"
+          className="mt-16 lg:mt-24 relative animate-float"
         >
           <div className="relative mx-auto max-w-4xl">
             {/* Glow Effect */}
