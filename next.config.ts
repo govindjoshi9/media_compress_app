@@ -3,21 +3,21 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Disable caching in development
   reactStrictMode: true,
-  swcMinify: true,
-  
+
+
   // Improve development experience
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  
+
   // Handle caching issues
   generateEtags: false,
-  
+
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
-  
+
   // Headers to prevent caching issues
   async headers() {
     return [
