@@ -7,18 +7,19 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import {
   Download, Monitor, Apple, Shield, Zap,
-  CheckCircle, HardDrive, Cpu, MemoryStick,
+  CheckCircle, HardDrive, Cpu,
   ArrowRight
 } from 'lucide-react';
 import Navbar from '@/components/landing/Navbar';
 import Footer from '@/components/landing/Footer';
+import { downloads } from '@/lib/downloads';
 
 const platforms = [
   {
     name: 'Windows',
     icon: Monitor,
-    version: 'v1.0.0',
-    size: '45 MB',
+    version: downloads.version,
+    size: downloads.windows.size,
     file: 'MediaCompressor-Setup.exe',
     requirements: [
       'Windows 10 or later',
@@ -27,13 +28,13 @@ const platforms = [
       '100 MB disk space',
     ],
     color: 'from-blue-500 to-cyan-500',
-    downloadUrl: '#', // Replace with actual download URL
+    downloadUrl: downloads.windows.url,
   },
   {
     name: 'macOS',
     icon: Apple,
-    version: 'v1.0.0',
-    size: '42 MB',
+    version: downloads.version,
+    size: downloads.mac.size,
     file: 'MediaCompressor.dmg',
     requirements: [
       'macOS 10.15 or later',
@@ -42,7 +43,7 @@ const platforms = [
       '100 MB disk space',
     ],
     color: 'from-gray-500 to-gray-600',
-    downloadUrl: '#', // Replace with actual download URL
+    downloadUrl: downloads.mac.url,
   },
 ];
 
@@ -72,10 +73,10 @@ export default function DownloadPage() {
       <section className="pt-32 pb-16 relative overflow-hidden">
         {/* Background Glow */}
         <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px]" />
-            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -197,36 +198,36 @@ export default function DownloadPage() {
       <section className="pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="glass-card p-8 text-center relative overflow-hidden">
-             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 pointer-events-none" />
             <div className="relative z-10">
-                <h3 className="text-xl font-semibold text-white mb-6">What You Get</h3>
-                <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-gray-400">
+              <h3 className="text-xl font-semibold text-white mb-6">What You Get</h3>
+              <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-gray-400">
                 <div className="flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-yellow-400" />
-                    <span>FFmpeg-powered</span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-emerald-400" />
-                    <span>100% Offline</span>
+                  <Zap className="w-4 h-4 text-yellow-400" />
+                  <span>FFmpeg-powered</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <HardDrive className="w-4 h-4 text-blue-400" />
-                    <span>No Size Limits</span>
+                  <Shield className="w-4 h-4 text-emerald-400" />
+                  <span>100% Offline</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Download className="w-4 h-4 text-purple-400" />
-                    <span>3 Free Daily</span>
+                  <HardDrive className="w-4 h-4 text-blue-400" />
+                  <span>No Size Limits</span>
                 </div>
+                <div className="flex items-center gap-2">
+                  <Download className="w-4 h-4 text-purple-400" />
+                  <span>3 Free Daily</span>
                 </div>
+              </div>
 
-                <div className="mt-8">
+              <div className="mt-8">
                 <Link href={createPageUrl('Pricing')}>
-                    <Button variant="outline" className="border-white/10 text-white hover:bg-white/5 px-6 rounded-full">
+                  <Button variant="outline" className="border-white/10 text-white hover:bg-white/5 px-6 rounded-full">
                     View Pricing Plans
                     <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                  </Button>
                 </Link>
-                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -18,13 +18,13 @@ export const downloads: Downloads = {
     version: '0.1.0',
     releaseDate: '2026-01-02',
     windows: {
-        url: '/bundle/msi/MediaCompressor_0.1.0_x64_en-US.msi',
+        url: process.env.NEXT_PUBLIC_APPLICATION_DOWNLOAD || '/bundle/msi/MediaCompressor_0.1.0_x64_en-US.msi',
         size: '109 MB',
         platform: 'Windows 10/11 (MSI)',
         label: 'MSI Installer'
     },
     windowsExe: {
-        url: '/bundle/nsis/MediaCompressor_0.1.0_x64-setup.exe',
+        url: process.env.NEXT_PUBLIC_APPLICATION_DOWNLOAD || '/bundle/nsis/MediaCompressor_0.1.0_x64-setup.exe',
         size: '79 MB',
         platform: 'Windows 10/11 (EXE)',
         label: 'EXE Setup'
