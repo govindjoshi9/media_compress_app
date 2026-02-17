@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { createPageUrl, PageName } from '@/lib/navigation';
+import { createPageUrl } from '@/lib/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Shield, Lock, Eye, Server } from 'lucide-react';
@@ -53,7 +53,7 @@ export default function Privacy() {
               <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4 text-center">
                 <Eye className="w-8 h-8 text-blue-400 mx-auto mb-2" />
                 <p className="text-white font-medium">No Tracking</p>
-                <p className="text-sm text-gray-500">We don't spy on you</p>
+                <p className="text-sm text-gray-500">We don&apos;t spy on you</p>
               </div>
               <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4 text-center">
                 <Server className="w-8 h-8 text-purple-400 mx-auto mb-2" />
@@ -66,13 +66,13 @@ export default function Privacy() {
               <section>
                 <h2 className="text-xl font-semibold text-white mb-4">1. Overview</h2>
                 <p>
-                  MediaCompressor Pro ("we", "our", or "the app") is designed with privacy as a core principle.
-                  We believe your files are your business, and we've built our software to ensure they stay that way.
+                  MediaCompressor Pro (&quot;we&quot;, &quot;our&quot;, or &quot;the app&quot;) is designed with privacy as a core principle.
+                  We believe your files are your business, and we&apos;ve built our software to ensure they stay that way.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold text-white mb-4">2. Data We DON'T Collect</h2>
+                <h2 className="text-xl font-semibold text-white mb-4">2. Data We DON&apos;T Collect</h2>
                 <p>MediaCompressor Pro does NOT:</p>
                 <ul className="list-disc list-inside space-y-2 mt-4">
                   <li>Upload your videos to any server</li>
@@ -145,15 +145,15 @@ export default function Privacy() {
                 <h2 className="text-xl font-semibold text-white mb-4">8. Changes to This Policy</h2>
                 <p>
                   We may update this privacy policy from time to time. We will notify you of any changes
-                  by posting the new policy on this page and updating the "Last updated" date.
+                  by posting the new policy on this page and updating the &quot;Last updated&quot; date.
                 </p>
               </section>
             </div>
           </motion.div>
         </div>
-      </section>
+      </section >
 
       <Footer />
-    </div>
+    </div >
   );
 }

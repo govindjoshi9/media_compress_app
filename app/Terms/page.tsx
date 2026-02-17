@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { createPageUrl, PageName } from '@/lib/navigation';
+import { createPageUrl } from '@/lib/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, FileText } from 'lucide-react';
@@ -46,7 +46,7 @@ export default function Terms() {
             <section>
               <h2 className="text-xl font-semibold text-white mb-4">1. Acceptance of Terms</h2>
               <p>
-                By downloading, installing, or using MediaCompressor Pro ("the Software"), you agree to be bound
+                By downloading, installing, or using MediaCompressor Pro (&quot;the Software&quot;), you agree to be bound
                 by these Terms of Service. If you do not agree to these terms, do not use the Software.
               </p>
             </section>
@@ -122,7 +122,7 @@ export default function Terms() {
             <section>
               <h2 className="text-xl font-semibold text-white mb-4">7. Disclaimer of Warranties</h2>
               <p>
-                The Software is provided "AS IS" without warranty of any kind. We do not guarantee that:
+                The Software is provided &quot;AS IS&quot; without warranty of any kind. We do not guarantee that:
               </p>
               <ul className="list-disc list-inside space-y-2 mt-4">
                 <li>The Software will meet your specific requirements</li>

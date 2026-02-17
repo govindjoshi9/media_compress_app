@@ -11,6 +11,7 @@ export default function DownloadButton() {
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         setMounted(true);
         const detectedPlatform = detectPlatform();
         setPlatform(detectedPlatform);

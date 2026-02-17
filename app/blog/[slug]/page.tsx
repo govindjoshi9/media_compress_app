@@ -2,13 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { createPageUrl, PageName } from '@/lib/navigation';
+import { createPageUrl } from '@/lib/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, Clock, User, Tag, Download, Share2 } from 'lucide-react';
 import Navbar from '@/components/landing/Navbar';
 import Footer from '@/components/landing/Footer';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 const blogContent = {
   'how-to-compress-5gb-videos': {

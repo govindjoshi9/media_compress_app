@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { createPageUrl, PageName } from '@/lib/navigation';
+import { createPageUrl } from '@/lib/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import {

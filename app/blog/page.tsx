@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { createPageUrl, PageName } from '@/lib/navigation';
+import { createPageUrl } from '@/lib/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Clock, User, Tag } from 'lucide-react';
@@ -89,10 +89,10 @@ export default function Blog() {
       <section className="pt-32 pb-16 relative overflow-hidden">
         {/* Background Glow */}
         <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px]" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -210,16 +210,16 @@ export default function Blog() {
       <section className="pb-24">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="glass-card p-10 relative overflow-hidden">
-             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 pointer-events-none" />
             <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-4">Ready to start compressing?</h3>
-                <p className="text-gray-400 mb-8">Download MediaCompressor Pro and put these tips into action.</p>
-                <Link href={createPageUrl('Download')}>
+              <h3 className="text-2xl font-bold text-white mb-4">Ready to start compressing?</h3>
+              <p className="text-gray-400 mb-8">Download MediaCompressor Pro and put these tips into action.</p>
+              <Link href={createPageUrl('Download')}>
                 <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-8 py-6 font-bold text-lg shadow-lg shadow-white/10 transition-all hover:scale-105">
-                    Download Free
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                  Download Free
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                </Link>
+              </Link>
             </div>
           </div>
         </div>
