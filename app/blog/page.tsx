@@ -9,68 +9,7 @@ import { ArrowRight, Clock, User, Tag } from 'lucide-react';
 import Navbar from '@/components/landing/Navbar';
 import Footer from '@/components/landing/Footer';
 
-const blogPosts = [
-  {
-    slug: 'how-to-compress-5gb-videos',
-    title: 'How to Compress 5GB Videos Without Losing Quality',
-    excerpt: 'Learn the secrets to shrinking massive video files while maintaining stunning visual quality. A complete guide for beginners and pros.',
-    image: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&h=400&fit=crop',
-    author: 'MediaCompressor Team',
-    date: 'Jan 15, 2025',
-    readTime: '5 min read',
-    category: 'Tutorial',
-  },
-  {
-    slug: 'best-crf-settings-explained',
-    title: 'Best CRF Settings Explained: A Complete Guide',
-    excerpt: 'CRF (Constant Rate Factor) is the key to balancing file size and quality. Discover the optimal settings for different use cases.',
-    image: 'https://images.unsplash.com/photo-1535016120720-40c646be5580?w=800&h=400&fit=crop',
-    author: 'MediaCompressor Team',
-    date: 'Jan 10, 2025',
-    readTime: '7 min read',
-    category: 'Technical',
-  },
-  {
-    slug: 'compress-videos-for-whatsapp',
-    title: 'How to Compress Videos for WhatsApp: Ultimate Guide',
-    excerpt: 'WhatsApp has strict file size limits. Learn how to compress your videos perfectly for sharing without quality loss.',
-    image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&h=400&fit=crop',
-    author: 'MediaCompressor Team',
-    date: 'Jan 5, 2025',
-    readTime: '4 min read',
-    category: 'Tips',
-  },
-  {
-    slug: 'ffmpeg-vs-online-compressors',
-    title: 'FFmpeg vs Online Compressors: Which is Better?',
-    excerpt: 'Compare the pros and cons of desktop FFmpeg-based tools versus cloud-based online video compressors.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
-    author: 'MediaCompressor Team',
-    date: 'Dec 28, 2024',
-    readTime: '6 min read',
-    category: 'Comparison',
-  },
-  {
-    slug: 'video-compression-for-youtube',
-    title: 'Best Video Settings for YouTube Uploads in 2025',
-    excerpt: 'Optimize your videos for YouTube with the perfect compression settings. Get better quality and faster uploads.',
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=400&fit=crop',
-    author: 'MediaCompressor Team',
-    date: 'Dec 20, 2024',
-    readTime: '8 min read',
-    category: 'Tutorial',
-  },
-  {
-    slug: 'batch-video-compression-tips',
-    title: 'Batch Video Compression: Save Hours of Work',
-    excerpt: 'Process multiple videos at once with these pro tips. Perfect for content creators handling large video libraries.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
-    author: 'MediaCompressor Team',
-    date: 'Dec 15, 2024',
-    readTime: '5 min read',
-    category: 'Productivity',
-  },
-];
+import { blogPosts } from '@/lib/blog-data';
 
 const categoryColors = {
   Tutorial: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
